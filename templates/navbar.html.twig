@@ -1,0 +1,38 @@
+<link href="{{ asset('css/navbar.css') }}" type="text/css" rel="stylesheet">
+
+<div class="topnav">
+    <a class="active" href="/">Accueil</a>
+    <a href="{{ path('voituredispo')}}">Voitures</a>
+    <a href="{{ path('scooterdispo')}}">Scooter</a></a>
+    <a href="{{ path('vehiculedispo')}}">Toutes nos offres</a>
+    {% if app.user %}
+        {% if app.user.roles[0] == 2 %}
+            <a href="{{ path('vehicule_new') }}">Créer une offre</a>
+        {% endif %}
+    {% endif %}
+     {% if app.user %}
+        {% if app.user.roles[0] == 2 %}
+            <a href="{{ path('user') }}">Tout les users</a>
+        {% endif %}
+    {% endif %}
+    {% if app.user %}
+        {% if app.user.roles[0] == 1 %}
+            <a href="{{ path('mesreservations', {'idus': app.user.id}) }}">Mes réservations</a>
+        {% endif %}
+    {% endif %}
+    {% if app.user %}
+        {% if app.user.roles[0] == 2 %}
+            <a href="{{ path('toutelesreservations') }}">Toutes les reservations</a>
+        {% endif %}
+    {% endif %}
+    {% if app.user %}
+                <a href=" {{ path('app_logout') }}"> Déconnexion</a>
+    {% else %}
+        <a href=" {{ path('app_login') }}"> Se Connecter</a>
+        <a href=" {{ path('app_register') }} "> Inscription </a>
+    {% endif %}
+
+    <img class="navimg" src="{{ asset('css/assets/emove.png') }}"/>
+
+
+</div>

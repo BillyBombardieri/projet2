@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1>Nos offres</h1>
+        <tbody>
+
+        <div class="card-group">
+  <div class="card">
+    <div class="card-body">
+    <a href="{{ path('voituredispo')}}">
+    <img class="card-img-top" src="https://www.automobile-magazine.fr/asset/cms/800x449/167149/config/115964/peugeot-208.jpg" alt="Card image cap">
+    </a>
+      <h5 class="card-title"><a href="{{ path('voituredispo')}}">Voitures</a></h5>
+      
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+    <a href="{{ path('scooterdispo')}}">
+    <img class="card-img-top" src="https://leblogduscooter.fr/wp-content/uploads/2020/07/kymco-x-town-city.jpg" alt="Card image cap">
+    </a>
+      <h5 class="card-title"><a href="{{ path('scooterdispo')}}">Scooter</a></h5>
+      
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+    <a href="{{ path('vehiculedispo')}}">
+    <img class="card-img-top" src="https://smilepermis.fr/wp-content/uploads/2021/03/conduite-accelere-auto-moto-1024x512.png" alt="Card image cap">
+    </a>
+      <h5 class="card-title"><a href="{{ path('vehiculedispo')}}">Toutes nos offres</a></h5>
+      
+    </div>
+  </div>
+</div>
+        </tbody>
+    
+    
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <h1>Scooter Disponibles :</h1>
+    <tbody>
+        <div class="card-group">
+        
+            {% for vehicule in vehicules %}
+                {% if vehicule.disponible == 1 %}
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+                        <div class="card">
+                            <h5 class="card-title"> {{ vehicule.marque }} </h5>
+                                <p class="card-text">
+                                    <ul>
+                                        <li>{{ vehicule.type }}</li>
+                                        <li>{{ vehicule.marque }}</li>
+                                        <li>{{ vehicule.couleur }}</li>
+                                    </ul>
+                                </p>
+                                <div class="card-footer">
+                                    Prix par jour : {{ vehicule.prixachat }}
+                                    <a class="police_black" href="{{ path('vehicule_show', {'id': vehicule.id}) }}">Voir plus</a>
+                                    
+                                     {% if app.user %}
+                                        {% if app.user.roles[0] == 2 %}
+                                            <a class="police_black" href="{{ path('vehicule_edit', {'id': vehicule.id}) }}">edit</a>
+                                        {% endif %}
+                                    {% endif %}
+
+                                    {% if app.user %}
+                                        <a class="police_black" href="{{ path('vehicule_reservation', {'id': vehicule.id}) }}">Réservez</a>
+                                    {% else %}
+                                        <a class="police_black" href="{{ path('notuser') }}">Réservez</a>
+                                    {% endif %}
+
+                                </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% else %}
+                <tr>
+                    <td colspan="12">Pas d'offres disponibles actuellement</td>
+                </tr>
+            {% endfor %}
+      
+
+     {% if app.user %}
+        {% if app.user.roles[0] == 2 %}
+            <a href="{{ path('vehicule_new') }}">Créer</a>
+        {% endif %}
+    {% endif %}
+    
+
+{% endblock %}

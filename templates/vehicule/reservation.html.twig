@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+                <div class="card">
+                    <h5 class="card-title"> {{ vehicule.marque }} </h5>
+                        <p class="card-text">
+                            <ul>
+                                <li>{{ vehicule.type }}</li>
+                                <li>{{ vehicule.marque }}</li>
+                                <li>{{ vehicule.couleur }}</li>
+                            </ul>
+                        </p>
+                        <div class="card-footer">
+                            Prix par jour : {{ vehicule.prixachat }} €
+                            <a class="police_black" href="{{ path('vehicule_show', {'id': vehicule.id}) }}">Voir plus</a>
+                            {% if app.user %}
+                                {% if app.user.roles[0] == 2 %}
+                                    <a class="police_black" href="{{ path('vehicule_edit', {'id': vehicule.id}) }}">edit</a>
+                                {% endif %}
+                            {% endif %}
+                            
+
+                        </div>
+                </div>
+            </div>
+            <br>
+
+
+{{ form_start(reservationform) }}
+        {{ form_widget(reservationform.iduser, { 'attr': {'class': 'hidden-row' , 'value': app.user.id} }) }}
+        {{ form_widget(reservationform.idvehicule, { 'attr': {'class': 'hidden-row' , 'value': vehicule.id } }) }}
+    <div class="form-control">
+         Temps souhaité de location (jour):
+        {{ form_widget(reservationform.temps) }}
+    </div>
+    {{ form_widget(reservationform.modelevehicule, { 'attr': {'class': 'hidden-row' , 'value': vehicule.modele} }) }}
+    {{ form_widget(reservationform.prix, { 'attr': {'class': 'hidden-row' , 'value': vehicule.prixachat} }) }}
+    
+    <button type="submit" class="btn btn-primary">Réserver</button>
+{{ form_end(reservationform) }}
+
+
+{% endblock %}

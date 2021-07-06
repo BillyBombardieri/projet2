@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EMOVE{% endblock %}
+
+
+{% block body %}
+    <h1>Mes réservations</h1>
+    <tbody>
+        <div class="card-group">
+            {% for vehicule in vehicules %}
+            <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+                <div class="card">
+                    <h5 class="card-title"> {{ vehicule.modelevehicule }} </h5>
+                        <p class="card-text">
+                            <ul>
+                                <li>{{ vehicule.id }}</li>
+                                <li>{{ vehicule.modelevehicule }}</li>
+                            </ul>
+                        </p>
+                        <div class="card-footer">
+                            <a class="police_black" href="{{ path('vehicule_show', {'id': vehicule.id}) }}">show</a>
+                            {% if app.user %}
+                                {% if app.user.roles[0] == 2 %}
+                                    <a class="police_black" href="{{ path('vehicule_edit', {'id': vehicule.id}) }}">edit</a>
+                                {% endif %}
+                            {% endif %}
+                            {% if app.user %}
+                                <a class="police_black" href="{{ path('vehicule_reservation', {'id': vehicule.id}) }}">Réservez</a>
+                            {% else %}
+                                <a class="police_black" href="{{ path('notuser') }}">Réservez</a>
+                            {% endif %}
+                        </div>
+                </div>
+            </div>
+            {% else %}
+                <tr>
+                   <td colspan="12">Pas d'offres disponibles actuellement</td>
+                </tr>
+            {% endfor %}
+    </tbody>
+    {% if app.user %}
+        {% if app.user.roles[0] == 2 %}
+            <a href="{{ path('vehicule_new') }}">Créer</a>
+        {% endif %}
+    {% endif %}
+{% endblock %}

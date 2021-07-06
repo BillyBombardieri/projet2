@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1>Modification de l'utilisateur</h1>
+
+    {{ include('user/user_form_html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('user') }}">Annuler</a>
+
+    {{ include('user/user_delete_form.html.twig') }}
+{% endblock %}
