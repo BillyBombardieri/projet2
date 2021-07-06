@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 use App\Form\Vehicule1Type;
 use App\Repository\VehiculeRepository;
 use App\Repository\ReservationRepository;
+use Symfony\Bundle\DebugBundle\DebugBundle;
 
 class IndexController extends AbstractController
 {
